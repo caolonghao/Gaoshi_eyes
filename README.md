@@ -15,6 +15,10 @@
 ```
     pip install flask
 ```
+安装glob
+```
+    pip install glob
+```
 ### 2. 运行server
 更改代码文件中模型文件夹路径 `model_folder = '/share1/clh/gaoshi_model_pack'`
 
@@ -28,3 +32,5 @@ python client.py
 ```
 模型将会对`test_images`文件夹中的文件进行分割，并将结果保存至`pred_results`文件夹中。
 注意，由于nnunet的多模态处理特性，对于单模态数据，`test_images`文件夹中的文件名需要带有`_0000`后缀，如`48_0000.png`
+
+TODO: 现在如果预先将图像读取为array，使用`predictor.predict_from_list_of_npy_arrays`推理，速度会明显慢于`predictor.predict_from_files`，事实上，读取文件并不是瓶颈，若直接使用`NaturalImage2DIO`读取文件，三个文件仅耗时0.01s，具体原因可能需要后续读代码
